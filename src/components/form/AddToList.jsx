@@ -6,11 +6,11 @@ const AddToList = () => {
   
   const dispatch = useDispatch();
 
-  const formTitle = useSelector((state)=>{
+  const formTitle = useSelector((state) => {
     return state.onFormController.title;
   });
 
-  const formDescription = useSelector((state)=> {
+  const formDescription = useSelector((state) => {
     return state.onFormController.description;
   });
 
@@ -23,7 +23,7 @@ const AddToList = () => {
     <div>
       <form className="w-75" onSubmit={onFormSubmit}>
         <div className="row mb-4 mt-5 ">
-          <label for="inputEmail3" 
+          <label 
           className="col-sm-2 col-form-label"
           >
             Title :
@@ -32,16 +32,18 @@ const AddToList = () => {
             <input type="text" 
             className="form-control" 
             id="title" 
+            name="title"
             value={formTitle}
             onChange={(event)=>{
               const {value} = event.target;
+              console.log(value)
               dispatch(onTodoFormTitleChange(value))
             }}
           />
           </div>
         </div>
         <div className="row mb-3">
-          <label for="inputPassword3" className="col-sm-2 col-form-label">
+          <label className="col-sm-2 col-form-label">
             Description :
           </label>
           <div className="col-sm-5 ">
@@ -49,9 +51,11 @@ const AddToList = () => {
               type="text"
               className="form-control"
               id="description"
+              name='description'
               value={formDescription}
               onChange={(event)=>{
                 const {value} = event.target;
+                console.log(value)
                 dispatch(onTodoFormDescriptionChange(value))
               }}
             />
@@ -64,8 +68,8 @@ const AddToList = () => {
           ADD DATA
         </button>
       </form>
-      {/* <h1>{title}</h1>
-      <h2>{description}</h2> */}
+      <h1>{formTitle}</h1>
+      <h2>{formDescription}</h2>
     </div>
   );
 };

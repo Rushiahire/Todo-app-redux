@@ -1,4 +1,4 @@
-import { Action } from "history";
+
 import { TODO_FORM_TITLE_CHANGE, TODO_FORM_DESCRIPTION_CHANGE } from "../Action/ActionType";
 
 
@@ -27,10 +27,10 @@ const onFormDescriptionChangeReducer = (currentValue,newValue) => {
 export const onFormController = (state=initialState,action) => {
     switch(action.type) {
         case TODO_FORM_TITLE_CHANGE:
-            return onFormTitleChangeReducer(state,action.newValue)
+            return onFormTitleChangeReducer(state,action.title)
 
         case TODO_FORM_DESCRIPTION_CHANGE:
-            return onFormDescriptionChangeReducer(state,action.newValue)
+            return onFormDescriptionChangeReducer(state,action.description)
         
         default :
             return state
