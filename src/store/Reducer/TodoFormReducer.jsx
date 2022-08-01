@@ -1,10 +1,11 @@
 
-import { TODO_FORM_TITLE_CHANGE, TODO_FORM_DESCRIPTION_CHANGE } from "../Action/ActionType";
+import { TODO_FORM_TITLE_CHANGE, TODO_FORM_DESCRIPTION_CHANGE, TODO_FORM_SUBMIT_CHANGE ,RESET_FORM_ON_SUBMIT } from "../Action/ActionType";
 
 
 const initialState = {
     title:'',
-    description:''
+    description:'',
+    isFormSubmit: false
 }
 
 
@@ -24,6 +25,19 @@ const onFormDescriptionChangeReducer = (currentValue,newValue) => {
 }
 
 
+const onFormSubmitReducer = (currentValue,data) => {
+    return {
+        ...currentValue, isFormSubmit :data
+    }
+}
+
+const resetFormReducer = () => {
+    return {
+        title : '',
+        description:''
+    }
+}
+
 export const onFormController = (state=initialState,action) => {
     switch(action.type) {
         case TODO_FORM_TITLE_CHANGE:
@@ -31,7 +45,13 @@ export const onFormController = (state=initialState,action) => {
 
         case TODO_FORM_DESCRIPTION_CHANGE:
             return onFormDescriptionChangeReducer(state,action.description)
-        
+
+        case TODO_FORM_SUBMIT_CHANGE :
+            return onFormSubmitReducer(state,action.data)
+
+        case RESET_FORM_ON_SUBMIT :
+            return resetFormReducer()
+
         default :
             return state
     }
