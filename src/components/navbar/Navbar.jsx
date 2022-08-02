@@ -28,7 +28,7 @@ const Navbar = () => {
                 <Nav.Link as={Link} to={'/'}>Home</Nav.Link>
               </li>
               <li className="nav-item">
-                <Nav.Link as={Link} to={'/addtolist'}>Add To List</Nav.Link>
+                <Nav.Link as={Link} to={'/addData'}>Add To List</Nav.Link>
               </li>
             </ul>
           </div>

@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   onTodoFormTitleChange,
   onTodoFormDescriptionChange,
-  onTodoFormSubmit,
+  addToList,
   resetFormAction
 } from "../../store/Action/TodoFormAction";
 
-const AddToList = () => {
+const TodoForm = () => {
   const dispatch = useDispatch();
 
   const formTitle = useSelector((state) => {
@@ -18,13 +18,26 @@ const AddToList = () => {
     return state.onFormController.description;
   });
 
-  const formSubmited = useSelector((state) => {
-    return state.onFormController.isFormSubmit;
-  });
+
+  const todoList = useSelector((state)=>{
+    return state.todoListReducer;
+  })
+
+
+
+
+  // const formSubmited = useSelector((state) => {
+  //   return state.onFormController.isFormSubmit;
+  // });
+
+  
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    dispatch(onTodoFormSubmit(true));
+    dispatch(addToList({
+      title:formTitle,
+      description:formDescription
+    }));
     dispatch(resetFormAction())
   };
 
@@ -66,22 +79,47 @@ const AddToList = () => {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button  
+        className="btn btn-primary" 
+        type="submit"
+        >
           ADD DATA
         </button>
       </form>
 
-      {
+      {/* {
         formSubmited ?
         <>
           <h1>{formTitle}</h1>
           <h2>{formDescription}</h2>
         </>
         : null
+      } */}
+
+      <ul>
+      {
+        (todoList.length > 0) ? 
+        <>
+        {
+          todoList.map((value,index)=>{
+            return (
+              <>
+              <li key={index}>
+              {value.title}
+              {value.description}
+              </li>
+              </>
+            )
+          })
+        }
+        </>
+        :
+        null
       }
+      </ul>
 
     </div>
   );
 };
 
-export default AddToList;
+export default TodoForm;

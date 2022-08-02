@@ -1,11 +1,12 @@
 
-import { TODO_FORM_TITLE_CHANGE, TODO_FORM_DESCRIPTION_CHANGE, TODO_FORM_SUBMIT_CHANGE ,RESET_FORM_ON_SUBMIT } from "../Action/ActionType";
+import { TODO_FORM_TITLE_CHANGE, TODO_FORM_DESCRIPTION_CHANGE, RESET_FORM_ON_SUBMIT} from "../Action/ActionType";
 
 
 const initialState = {
     title:'',
     description:'',
-    isFormSubmit: false
+    list : []
+    // isFormSubmit: false
 }
 
 
@@ -25,17 +26,24 @@ const onFormDescriptionChangeReducer = (currentValue,newValue) => {
 }
 
 
-const onFormSubmitReducer = (currentValue,data) => {
-    return {
-        ...currentValue, isFormSubmit :data
-    }
-}
+// const onFormSubmitReducer = (currentValue,data) => {
+//     return {
+//         ...currentValue, isFormSubmit :data
+//     }
+// }
+
+// const addDataReducer = (currentValue,data) => {
+
+//     // const {id,data} : payload
+
+//     return {
+//         list : [...currentValue,data]
+//     }
+
+// }
 
 const resetFormReducer = () => {
-    return {
-        title : '',
-        description:''
-    }
+    return initialState
 }
 
 export const onFormController = (state=initialState,action) => {
@@ -45,9 +53,6 @@ export const onFormController = (state=initialState,action) => {
 
         case TODO_FORM_DESCRIPTION_CHANGE:
             return onFormDescriptionChangeReducer(state,action.description)
-
-        case TODO_FORM_SUBMIT_CHANGE :
-            return onFormSubmitReducer(state,action.data)
 
         case RESET_FORM_ON_SUBMIT :
             return resetFormReducer()

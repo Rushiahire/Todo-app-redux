@@ -1,8 +1,11 @@
 import { combineReducers } from 'redux';
 import { onFormController } from './TodoFormReducer';
+import { todoListReducer } from './TodoListReducer';
+
 
 const RootReducer = combineReducers({
-    onFormController
+    onFormController,
+    todoListReducer
 });
 
 

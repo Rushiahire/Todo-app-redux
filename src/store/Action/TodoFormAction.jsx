@@ -1,4 +1,9 @@
-import { TODO_FORM_TITLE_CHANGE, TODO_FORM_DESCRIPTION_CHANGE, TODO_FORM_SUBMIT_CHANGE ,RESET_FORM_ON_SUBMIT} from "./ActionType"
+import { TODO_FORM_TITLE_CHANGE, 
+    TODO_FORM_DESCRIPTION_CHANGE, 
+    TODO_FORM_SUBMIT_CHANGE, 
+    ADD_DATA_IN_LIST,
+    RESET_FORM_ON_SUBMIT
+    } from "./ActionType"
 
 
 export const onTodoFormTitleChange = (data) => {
@@ -16,9 +21,16 @@ export const onTodoFormDescriptionChange = (data) => {
     }
 }
 
-export const onTodoFormSubmit = (data) => {
+// export const onTodoFormSubmit = (data) => {
+//     return {
+//         type : TODO_FORM_SUBMIT_CHANGE,
+//         data : data
+//     }
+// }
+
+export const addToList = (data) => {
     return {
-        type : TODO_FORM_SUBMIT_CHANGE,
+        type : ADD_DATA_IN_LIST,
         data : data
     }
 }
